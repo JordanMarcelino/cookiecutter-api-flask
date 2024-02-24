@@ -3,6 +3,7 @@ from datetime import timedelta
 from secrets import token_urlsafe
 
 from typing import Any
+from typing import Dict
 from typing import List
 from typing import Optional
 
@@ -22,7 +23,6 @@ class Settings(BaseSettings):
     # Flask Configuration
     FLASK_APP: str
     SECRET_KEY: str = token_urlsafe(16)
-    API_V1_STR: str = "/api/v1"
     DEBUG: bool = True
     TESTING: bool = False
 
@@ -50,8 +50,33 @@ class Settings(BaseSettings):
     # Bcrypt Configuration
     BCRYPT_LOG_ROUNDS: int = 13
 
+    # Cache Configuration
+    CACHE_TYPE: str = ("SimpleCache",)
+    CACHE_DEFAULT_TIMEOUT: int = 300
+
     # WTF Configuration
     WTF_CSRF_ENABLED: bool = True
+
+    # API Configuration
+    API_V1_STR: str = "/api/v1"
+    API_TITLE: str = "REST API Documentation of {{cookiecutter.project_name}}"
+    API_VERSION: str = "v1"
+    OPENAPI_VERSION: str = "3.0.3"
+    OPENAPI_URL_PREFIX: str = "/"
+    OPENAPI_SWAGGER_UI_PATH: str = "/docs"
+    OPENAPI_SWAGGER_UI_URL: str = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
+    API_SPEC_OPTIONS: Dict[str, Any] = {
+        "security": [{"bearerAuth": []}],
+        "components": {
+            "securitySchemes": {
+                "bearerAuth": {
+                    "type": "http",
+                    "scheme": "bearer",
+                    "bearerFormat": "JWT",
+                }
+            }
+        },
+    }
 
 
 class DevelopmentSettings(Settings):
