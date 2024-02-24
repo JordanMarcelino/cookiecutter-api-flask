@@ -75,3 +75,19 @@ def test_jwt_validation_success(client: FlaskClient):
     assert json["status"]["code"] == 200
     assert json["status"]["message"] == "Success validating JWT!"
     assert json["data"] == payload
+    
+def test_jwt_validation_failed_missing_jwt(client: FlaskClient):
+    payload = {"email": "test@gmail.com", "password": "secret"}
+
+    response = client.post(
+        f"{test_settings.API_V1_STR}/auth/restricted",
+        json=payload,
+        follow_redirects=True
+    )
+
+    json = response.get_json()
+
+    assert response.status_code == 401
+    assert json["status"]["code"] == 401
+    assert json["status"]["message"] == "Unauthorized!"
+    assert json["data"] is None
