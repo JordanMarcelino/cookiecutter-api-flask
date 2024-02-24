@@ -11,9 +11,9 @@ from flask_jwt_extended import JWTManager
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-from flask_sqlalchemy import SQLAlchemy
+from flask_smorest import Api
 
-from flask_wtf import CSRFProtect
+from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy.orm import DeclarativeBase
 
@@ -22,11 +22,11 @@ class Base(DeclarativeBase):
     pass
 
 
+api = Api()
+
 bcrypt_ext = Bcrypt()
 
 cache = Cache()
-
-csrf = CSRFProtect()
 
 db = SQLAlchemy(model_class=Base)
 

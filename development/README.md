@@ -14,7 +14,6 @@
 -   Flask SQLAlchemy (ORM) : https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/
 -   Flask JWT (Authentication) : https://flask-jwt-extended.readthedocs.io/en/stable/
 -   Flask Bcrypt (Hashing) : https://pypi.org/project/bcrypt/
--   Flask WTF (CSRF) : https://flask-wtf.readthedocs.io/en/1.2.x/
 -   Flask CORS (CORS) : https://flask-cors.readthedocs.io/en/latest/
 -   Flask Limiter (Rate Limiter) : https://flask-limiter.readthedocs.io/en/stable/
 -   Pydantic-Settings (Configuration) : https://docs.pydantic.dev/latest/concepts/pydantic_settings/

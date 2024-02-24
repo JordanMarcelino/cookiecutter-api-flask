@@ -18,7 +18,6 @@ flask-smorest = "^0.43.0"
 flask-bcrypt = "^1.0.1"
 flask-limiter = "^3.5.1"
 flask-testing = "^0.8.1"
-Flask-WTF = "^1.2.1"
 pydantic = {extras = ["email"], version = "^2.6.1"}
 pydantic-settings = "^2.1.0"
 loguru = "^0.7.2"
