@@ -18,5 +18,5 @@ class Status(BaseModel):
 
 # Standard web response
 class WebResponse(Generic[T], BaseModel):
-    info: Status
+    status: Status
     data: Optional[Union[List[T], T]] = None

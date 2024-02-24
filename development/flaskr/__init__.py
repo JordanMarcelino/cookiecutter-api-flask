@@ -13,6 +13,7 @@ from flask_jwt_extended import set_access_cookies
 
 from flask_smorest import Api
 
+from flaskr.api.api_v1 import error_bp
 from flaskr.core import dev_settings
 from flaskr.core import logger
 from flaskr.core import prod_settings
@@ -81,7 +82,7 @@ def register_extensions(app: Flask):
 def register_blueprints(app: Api):
     """Register Flask blueprints."""
 
-    pass
+    app.register_blueprint(error_bp)
 
 
 def init_db(app: Flask):
