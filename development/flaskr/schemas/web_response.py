@@ -1,22 +1,14 @@
-from typing import Any
-from typing import Generic
-from typing import List
-from typing import Optional
-from typing import TypeVar
-from typing import Union
-
-from pydantic import BaseModel
-
-T = TypeVar("T")
+from marshmallow import fields
+from marshmallow import Schema
 
 
 # Response information
-class Status(BaseModel):
-    code: int = 200
-    message: str
+class Status(Schema):
+    code = fields.Integer(default=200, metadata={"description": "Error code"})
+    message = fields.String(metadata={"description": "Error message"})
 
 
 # Standard web response
-class WebResponse(Generic[T], BaseModel):
-    status: Status
-    data: Optional[Union[List[T], T]] = None
+class WebResponse(Schema):
+    status = fields.Nested(Status)
+    data = fields.Raw(default=None, allow_none=True)

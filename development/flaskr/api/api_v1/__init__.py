@@ -1,1 +1,2 @@
-from .error import error_bp
+from .errors import errors_bp
+from .auth import auth_bp

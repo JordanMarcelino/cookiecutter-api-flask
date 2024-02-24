@@ -13,7 +13,8 @@ from flask_jwt_extended import set_access_cookies
 
 from flask_smorest import Api
 
-from flaskr.api.api_v1 import error_bp
+from flaskr.api.api_v1 import auth_bp
+from flaskr.api.api_v1 import errors_bp
 from flaskr.core import dev_settings
 from flaskr.core import logger
 from flaskr.core import prod_settings
@@ -35,7 +36,8 @@ def create_app(
     app.config.from_object(config)
 
     register_extensions(app)
-    register_blueprints(app)
+    register_blueprints(api)
+
     init_db(app)
 
     @app.after_request
@@ -79,10 +81,11 @@ def register_extensions(app: Flask):
     jwt.init_app(app)
 
 
-def register_blueprints(app: Api):
+def register_blueprints(api: Api):
     """Register Flask blueprints."""
 
-    app.register_blueprint(error_bp)
+    api.register_blueprint(auth_bp)
+    api.register_blueprint(errors_bp)
 
 
 def init_db(app: Flask):

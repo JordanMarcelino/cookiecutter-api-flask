@@ -51,7 +51,7 @@ class Settings(BaseSettings):
     BCRYPT_LOG_ROUNDS: int = 13
 
     # Cache Configuration
-    CACHE_TYPE: str = ("SimpleCache",)
+    CACHE_TYPE: str = "SimpleCache"
     CACHE_DEFAULT_TIMEOUT: int = 300
 
     # WTF Configuration
