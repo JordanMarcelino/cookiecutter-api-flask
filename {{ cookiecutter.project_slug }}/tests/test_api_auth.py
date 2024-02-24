@@ -61,11 +61,17 @@ def test_jwt_validation_success(client: FlaskClient):
         f"{test_settings.API_V1_STR}/auth/login", json=payload, follow_redirects=True
     )
 
+    csrf_token = client.get_cookie("csrf_access_token").value
+    access_token = client.get_cookie("access_token_cookie").value
+
     response = client.post(
         f"{test_settings.API_V1_STR}/auth/restricted",
         json=payload,
         follow_redirects=True,
-        headers={"Cookie": response.headers.get("Set-Cookie")},
+        headers={
+            "Authorization": f"Bearer {access_token}",
+            "X-CSRF-TOKEN": csrf_token,
+        },
     )
 
     json = response.get_json()
@@ -75,6 +81,7 @@ def test_jwt_validation_success(client: FlaskClient):
     assert json["status"]["code"] == 200
     assert json["status"]["message"] == "Success validating JWT!"
     assert json["data"] == payload
+    
     
 def test_jwt_validation_failed_missing_jwt(client: FlaskClient):
     payload = {"email": "test@gmail.com", "password": "secret"}

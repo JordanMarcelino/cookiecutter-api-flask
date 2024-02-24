@@ -39,20 +39,7 @@ def create_app(
     register_blueprints(api)
 
     init_db(app)
-
-    @app.after_request
-    def refresh_expiring_jwts(response: Response) -> Response:
-        try:
-            exp_timestamp = get_jwt()["exp"]
-            now = datetime.now()
-            target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
-            if target_timestamp > exp_timestamp:
-                access_token = create_access_token(identity=get_jwt_identity())
-                set_access_cookies(response, access_token)
-            return response
-        except (RuntimeError, KeyError):
-            # Case where there is not a valid JWT. Just return the original response
-            return response
+    init_jwt(app)
 
     return app
 
@@ -96,5 +83,20 @@ def init_db(app: Flask):
         except Exception as exc:
             logger.error(exc)
 
+
+def init_jwt(app: Flask):
+    @app.after_request
+    def refresh_expiring_jwts(response: Response) -> Response:
+        try:
+            exp_timestamp = get_jwt()["exp"]
+            now = datetime.now()
+            target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+            if target_timestamp > exp_timestamp:
+                access_token = create_access_token(identity=get_jwt_identity())
+                set_access_cookies(response, access_token)
+            return response
+        except (RuntimeError, KeyError):
+            # Case where there is not a valid JWT. Just return the original response
+            return response
 
 app = create_app()

@@ -42,10 +42,10 @@ def login(args):
     return res
 
 
-@jwt_required()
 @auth_bp.post("/restricted")
 @auth_bp.arguments(UserLoginRequest, location="json")
 @auth_bp.response(200, WebResponse)
+@jwt_required()
 def restricted(args):
     return WebResponse().load(
         data={

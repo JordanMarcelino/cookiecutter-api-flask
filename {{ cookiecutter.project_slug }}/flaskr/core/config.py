@@ -54,9 +54,6 @@ class Settings(BaseSettings):
     CACHE_TYPE: str = "SimpleCache"
     CACHE_DEFAULT_TIMEOUT: int = 300
 
-    # WTF Configuration
-    WTF_CSRF_ENABLED: bool = True
-
     # API Configuration
     API_V1_STR: str = "/api/v1"
     API_TITLE: str = "REST API Documentation of {{cookiecutter.project_name}}"
@@ -82,7 +79,6 @@ class Settings(BaseSettings):
 class DevelopmentSettings(Settings):
     DEVELOPMENT: bool = True
     DEBUG: bool = True
-    WTF_CSRF_ENABLED: bool = False
 
 
 class TestingSettings(Settings):
@@ -90,7 +86,6 @@ class TestingSettings(Settings):
     DEBUG: bool = True
     SQLALCHEMY_DATABASE_URI: str = "sqlite:///testdb.sqlite"
     BCRYPT_LOG_ROUNDS: int = 5
-    WTF_CSRF_ENABLED: bool = False
 
 
 prod_settings = Settings()

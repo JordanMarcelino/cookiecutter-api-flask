@@ -1,3 +1,5 @@
+from flask_jwt_extended.exceptions import NoAuthorizationError
+
 from flask_smorest import Blueprint
 
 from flaskr.schemas import WebResponse
@@ -16,6 +18,14 @@ def bad_request(error):
 @errors_bp.app_errorhandler(401)
 @errors_bp.response(401, WebResponse)
 def unauthorized(error):
+    return WebResponse().load(
+        data={"status": {"code": 401, "message": "Unauthorized!"}, "data": None}
+    )
+
+    
+@errors_bp.app_errorhandler(NoAuthorizationError)
+@errors_bp.response(401, WebResponse)
+def jwt_error(error):
     return WebResponse().load(
         data={"status": {"code": 401, "message": "Unauthorized!"}, "data": None}
     )
