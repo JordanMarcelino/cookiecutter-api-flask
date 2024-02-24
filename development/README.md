@@ -11,13 +11,14 @@
 ## Framework & Library
 
 -   Flask (HTTP Framework) : https://flask.palletsprojects.com/en/3.0.x/
--   Flask SQLAlchemy (ORM) : https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/
--   Flask JWT (Authentication) : https://flask-jwt-extended.readthedocs.io/en/stable/
 -   Flask Bcrypt (Hashing) : https://pypi.org/project/bcrypt/
+-   Flask Cache (Caching) : https://flask.palletsprojects.com/en/2.2.x/patterns/caching/
 -   Flask CORS (CORS) : https://flask-cors.readthedocs.io/en/latest/
+-   Flask JWT (Authentication) : https://flask-jwt-extended.readthedocs.io/en/stable/
 -   Flask Limiter (Rate Limiter) : https://flask-limiter.readthedocs.io/en/stable/
+-   Flask Smorest (REST-API) : https://flask-smorest.readthedocs.io/en/latest/quickstart.html
+-   Flask SQLAlchemy (ORM) : https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/
 -   Pydantic-Settings (Configuration) : https://docs.pydantic.dev/latest/concepts/pydantic_settings/
--   Pydantic (Validation) : https://docs.pydantic.dev/latest/
 -   Loguru (Logging) : https://github.com/Delgan/loguru
 -   Pytest (Testing) : https://docs.pytest.org/en/8.0.x/
 -   Decouple (Env) : https://pypi.org/project/python-decouple/
